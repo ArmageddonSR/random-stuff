@@ -5,6 +5,7 @@ void BubbleSort(int arr[], int n);
 void swap(int* x , int* y);
 void printArr(int arr[], int n);
 void SelectionSort(int arr[],int n );
+void InsertionSort(int arr[], int n);
 
 int main(int argc , char* argv[])
 {
@@ -20,7 +21,8 @@ int main(int argc , char* argv[])
     }
 
     //BubbleSort(arr,argc-1);
-    SelectionSort(arr,argc-1);
+    //SelectionSort(arr,argc-1);
+    InsertionSort(arr,argc-1);
     
 
     free(arr);
@@ -84,5 +86,22 @@ void SelectionSort(int arr[],int n )
             swap(&arr[i],&arr[min]);
             printArr(arr,n);
         }
+    }
+}
+
+void InsertionSort(int arr[], int n)
+{
+    for(int i = 1; i<n ; i++)
+    {
+        int key = arr[i];
+        int j = i-1;
+
+        while(j>=0 && arr[j] > key)
+        {
+            arr[j+1] = arr[j];
+            j=j-1;
+        }
+        arr[j+1] = key;
+        printArr(arr,n);
     }
 }
