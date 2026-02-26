@@ -4,6 +4,7 @@
 void BubbleSort(int arr[], int n);
 void swap(int* x , int* y);
 void printArr(int arr[], int n);
+void SelectionSort(int arr[],int n );
 
 int main(int argc , char* argv[])
 {
@@ -16,11 +17,11 @@ int main(int argc , char* argv[])
     for(int i = 0 ; i<argc-1 ; i++)
     {
         arr[i] = atoi(argv[i+1]);
-        printf("%d ",arr[i]);
     }
-    printf("\n");
 
-    BubbleSort(arr,argc-1);
+    //BubbleSort(arr,argc-1);
+    SelectionSort(arr,argc-1);
+    
 
     free(arr);
 
@@ -32,6 +33,15 @@ void swap(int* x , int* y)
     int temp = *x;
     *x = *y;
     *y = temp;
+}
+
+void printArr(int arr[], int n)
+{
+    for(int i = 0 ; i <n ; i++)
+    {
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
 }
 
 void BubbleSort(int arr[], int n)
@@ -55,11 +65,24 @@ void BubbleSort(int arr[], int n)
     }
 }
 
-void printArr(int arr[], int n)
-{
-    for(int i = 0 ; i <n ; i++)
+void SelectionSort(int arr[],int n )
+{   
+    int swapped = 0;
+    for(int i = 0 ; i < n-1 ; i++ )
     {
-        printf("%d ",arr[i]);
+        int min = i;
+        for(int j = i+1 ; j<n ; j++)
+        {
+            if(arr[j]<arr[min])
+            {
+                min = j;
+                swapped = 1;
+            }
+        }
+        if(swapped == 1)
+        {
+            swap(&arr[i],&arr[min]);
+            printArr(arr,n);
+        }
     }
-    printf("\n");
 }
